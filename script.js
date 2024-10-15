@@ -92,10 +92,20 @@ imageButton.addEventListener("click", () => {
     if (file) {
       let reader = new FileReader();
       reader.onload = (e) => {
+        let divImage = document.createElement("div");
+        divImage.style.resize = "both";
+        divImage.style.overflow = "hidden";
+        divImage.style.maxWidth = "100%"
         let img = document.createElement("img");
         img.src = e.target.result;
-        img.style.maxWidth = "50vh"; // Ensure image fits within editor
-        writingArea.appendChild(img);
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.resize = "both";
+        img.style.overflow = "auto";
+         // Ensure image fits within editor
+        
+        divImage.appendChild(img);
+        writingArea.appendChild(divImage);
       };
       reader.readAsDataURL(file);
     }
