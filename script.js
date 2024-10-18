@@ -80,6 +80,46 @@ linkButton.addEventListener("click", () => {
   }
 });
 
+// Function to save and restore the cursor position
+const saveSelection = () => {
+  let selection = window.getSelection();
+  if (selection.rangeCount > 0) {
+    return selection.getRangeAt(0);
+  }
+  return null;
+};
+
+const restoreSelection = (range) => {
+  if (range) {
+    let selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+};
+
+// Event listener for input in the writing area
+writingArea.addEventListener("input", () => {
+  // Save the current cursor position
+  let selectionRange = saveSelection();
+
+  // Check if the content is not already inside a <p> tag
+  if (writingArea.children.length === 0 || writingArea.firstChild.tagName !== "P") {
+    let text = writingArea.innerHTML;
+
+    // Create a <p> tag and move the content inside it
+    let para = document.createElement("p");
+    para.innerHTML = text;
+    para.contentEditable = true;
+
+    // Clear the writing area and replace it with the new paragraph
+    writingArea.innerHTML = "";
+    writingArea.appendChild(para);
+  }
+
+  // Restore the cursor position after modifying the DOM
+  restoreSelection(selectionRange);
+});
+
 // Handle image insertion
 imageButton.addEventListener("click", () => {
   let imageInput = document.createElement("input");
@@ -92,7 +132,7 @@ imageButton.addEventListener("click", () => {
     if (file) {
       let reader = new FileReader();
       reader.onload = (e) => {
-        let divImage = document.createElement("div");
+        let divImage = document.createElement("p");
         divImage.style.resize = "both";
         divImage.style.overflow = "hidden";
         divImage.style.maxWidth = "100%"

@@ -14,8 +14,8 @@
 
 <title>Rich Text Editor</title>
 
-<div class="container">
-    <div class="options">
+<body class="container">
+    <section class="options">
         <!-- Text Format -->
         <button id="bold" class="option-button format">
             <i class="fa-solid fa-bold"></i>
@@ -38,7 +38,7 @@
 
         <!-- List -->
         <button id="insertOrderedList" class="option-button">
-            <div class="fa-solid fa-list-ol"></div>
+            <section class="fa-solid fa-list-ol"></section>
         </button>
         <button id="insertUnorderedList" class="option-button">
             <i class="fa-solid fa-list"></i>
@@ -100,18 +100,21 @@
         <select id="fontSize" class="adv-option-button"></select>
 
         <!-- Color -->
-        <div class="input-wrapper">
+        <section class="input-wrapper">
             <input type="color" id="foreColor" class="adv-option-button" />
             <label for="foreColor">Font Color</label>
-        </div>
-        <div class="input-wrapper">
+        </section>
+        <section class="input-wrapper">
             <input type="color" id="backColor" class="adv-option-button" />
             <label for="backColor">Highlight Color</label>
-        </div>
-    </div>
+        </section>
+    </section>
     <div id="text-input" contenteditable="true"></div>
-</div>
+</body>
+
+
+
+
 <!--Script-->
 <script src="script.js"></script>
-
 </html>
