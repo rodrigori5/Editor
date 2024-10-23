@@ -97,28 +97,28 @@ const restoreSelection = (range) => {
   }
 };
 
-// Event listener for input in the writing area
-writingArea.addEventListener("input", () => {
-  // Save the current cursor position
-  let selectionRange = saveSelection();
+// // Event listener for input in the writing area
+// writingArea.addEventListener("input", () => {
+//   // Save the current cursor position
+//   let selectionRange = saveSelection();
 
-  // Check if the content is not already inside a <p> tag
-  if (writingArea.children.length === 0 || writingArea.firstChild.tagName !== "P") {
-    let text = writingArea.innerHTML;
+//   // Check if the content is not already inside a <p> tag
+//   if (writingArea.children.length === 0 || writingArea.firstChild.tagName !== "P") {
+//     let text = writingArea.innerHTML;
 
-    // Create a <p> tag and move the content inside it
-    let para = document.createElement("p");
-    para.innerHTML = text;
-    para.contentEditable = true;
+//     // Create a <p> tag and move the content inside it
+//     let para = document.createElement("p");
+//     para.innerHTML = text;
+//     para.contentEditable = true;
 
-    // Clear the writing area and replace it with the new paragraph
-    writingArea.innerHTML = "";
-    writingArea.appendChild(para);
-  }
+//     // Clear the writing area and replace it with the new paragraph
+//     writingArea.innerHTML = "";
+//     writingArea.appendChild(para);
+//   }
 
-  // Restore the cursor position after modifying the DOM
-  restoreSelection(selectionRange);
-});
+//   // Restore the cursor position after modifying the DOM
+//   restoreSelection(selectionRange);
+// });
 
 // Handle image insertion
 imageButton.addEventListener("click", () => {
@@ -132,7 +132,7 @@ imageButton.addEventListener("click", () => {
     if (file) {
       let reader = new FileReader();
       reader.onload = (e) => {
-        let divImage = document.createElement("p");
+        let divImage = document.createElement("div");
         divImage.style.resize = "both";
         divImage.style.overflow = "hidden";
         divImage.style.maxWidth = "100%"
